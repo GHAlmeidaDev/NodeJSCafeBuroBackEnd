@@ -5,7 +5,8 @@ const app = express();
 const dbconfig = require('./config/database.config');
 
 const mongoose = require('mongoose')
-
+const host = '0.0.0.0';
+const port = process.env.PORT || 3001;
 mongoose.Promise = global.Promise;
 
 mongoose.connect(dbconfig.url, {
@@ -31,7 +32,7 @@ app.get('/', (req, res) => {
 
 require('./app/routes/book.routes')(app);
 
-app.listen(3001, () => {
+app.listen(port, host, () => {
     console.log("Rodando")
     
 });
