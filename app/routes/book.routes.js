@@ -1,13 +1,18 @@
+
+
 module.exports = (app) => {
+
+    require('dotenv/config');
+    const secret = process.env.API_SECRET
     const books = require('../controllers/book.controller.js');
 
-    app.post('/books', books.create);
+    app.post(`/api/books/${secret}`, books.create);
 
-    app.get('/books', books.findAll);
+    app.get(`/api/books/${secret}`, books.findAll);
 
-    app.get('/books/:id', books.findOne);
+    app.get(`/api/books/${secret}/:id`, books.findOne);
 
-    app.put('/books/:id', books.update);
+    app.put(`/api/books/${secret}/:id`, books.update);
 
-    app.delete('/books/:id', books.delete);
+    app.delete(`/api/books/${secret}/:id`, books.delete);
 }
